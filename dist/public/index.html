@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="index.css">
+    <title>Vehicle Registry</title> 
+</head> 
+<body> 
+    <h1>Vehicle Registry</h1> 
+    <h2>Add a Vehicle</h2> 
+    <form id="addVehicleForm"> 
+    <input type="text" id="model" placeholder="Model" required /> 
+    <input type="text" id="color" placeholder="Color" required /> 
+    <input type="number" id="year" placeholder="Year" required /> 
+    <input type="number" id="power" placeholder="Power" required /> 
+    <input type="text" id="bodyType" placeholder="Body Type" /> 
+    <input type="number" id="wheelCount" placeholder="Wheel Count" /> 
+    <input type="number" id="draft" placeholder="Draft" /> 
+    <input type="number" id="wingspan" placeholder="Wingspan" /> 
+    <button type="submit">Add Vehicle</button> 
+    </form> 
+    <p id="addVehicleMessage"></p>
+
+    <form id="searchVehicleForm">
+    <h2>Search for a Vehicle by Model</h2>
+    <input type="text" id="searchModel" placeholder="Model" />
+    <button onclick="searchVehicle()">Search</button>
+    </form>
+    <p id="searchVehicleMessage"></p>
+    
+    <script> 
+        document.getElementById('addVehicleForm').addEventListener('submit', function(event) { 
+            event.preventDefault(); 
+            const vehicleData = { 
+                model: document.getElementById('model').value, 
+                color: document.getElementById('color').value, 
+                manufactureYear: document.getElementById('year').value, 
+                horsepower: document.getElementById('power').value, 
+                chassisType: document.getElementById('bodyType').value, 
+                numberOfWheels: parseInt(document.getElementById('wheelCount').value), 
+                draftCapacity: document.getElementById('draft').value, 
+                wingspanLength: document.getElementById('wingspan').value 
+            }; 
+ 
+            fetch('http://localhost:3000/vehicles', { 
+                method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json', 
+                }, 
+                body: JSON.stringify(vehicleData), 
+            }) 
+            .then(response => response.text()) 
+            .then(data => { 
+                document.getElementById('addVehicleMessage').textContent = data; 
+            }) 
+            .catch((error) => { 
+                console.error('Error:', error); 
+                document.getElementById('addVehicleMessage').textContent = 'Error adding vehicle'; 
+            }); 
+        }); 
+ 
+        function searchVehicle() { 
+            const model = document.getElementById('searchModel').value; 
+            fetch(`http://localhost:3000/vehicles/${model}`) 
+            .then(response => { 
+                if (!response.ok) { 
+                    throw new Error('Vehicle not found'); 
+                } 
+                return response.json(); 
+            }) 
+            .then(data => { 
+                document.getElementById('searchVehicleMessage').textContent = `Found vehicle: ${JSON.stringify(data)}`; 
+            }) 
+            .catch((error) => { 
+                document.getElementById('searchVehicleMessage').textContent = error.message; 
+            }); 
+        } 
+    </script> 
+</body> 
+</html>

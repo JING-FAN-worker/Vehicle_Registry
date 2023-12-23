@@ -1,0 +1,58 @@
+body {
+    background-image: url('./assets/background.png');
+    background-size: cover;  /* This makes the background cover the entire area */
+    background-repeat: no-repeat; /* This prevents the background from repeating */
+    background-attachment: fixed; /* Optional: This will keep the background fixed during scrolling */
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Style for the overall containers */
+.form-container, .search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px; /* Adjust space around the containers */
+    padding: 20px; /* Space inside the containers */
+    width: 50%; /* Adjust width as needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style for input fields and button */
+input, button {
+    margin: 10px 0; /* Space between each form element */
+    width: 80%; /* Adjust width as needed */
+    padding: 8px; /* Space inside each element */
+}
+
+/* Style for the form */
+#addVehicleForm, #searchVehicleForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for the buttons in the form */
+#addVehicleForm button, #searchVehicleForm button {
+    background-color: rgb(178, 237, 247); /* Changes the background color to white */
+    color: black; /* Sets the text color to black for better visibility */
+    border: 1px solid #ddd; /* Adds a light border to the button */
+    border-radius: 5px; /* Rounds the edges of the button */
+    padding: 10px 20px; /* Adjust padding for better button size */
+    cursor: pointer; /* Changes cursor to pointer on hover for better UX */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+#addVehicleForm button:hover {
+    background-color: #fefefe; /* Slightly darker shade on hover for feedback */
+    border-color: #ccc; /* Darkens the border on hover */
+}
+#searchVehicleForm button:hover {
+    background-color: #fefefe; /* Slightly darker shade on hover for feedback */
+    border-color: #ccc; /* Darkens the border on hover */
+}
+
+
