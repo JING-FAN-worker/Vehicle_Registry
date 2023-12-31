@@ -54,5 +54,8 @@ input, button {
     background-color: #fefefe; /* Slightly darker shade on hover for feedback */
     border-color: #ccc; /* Darkens the border on hover */
 }
+#searchVehicleMessage {
+    height: 100px
+}
 
 
